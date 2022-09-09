@@ -71,6 +71,11 @@ Get your public IP address.
 curl -s http://checkip.dyndns.org | sed 's/[a-zA-Z<>/ :]//g'
 ```
 
+Get IP addresses of all enabled network interfaces.
+```shell
+activeInt=$(ifconfig | pcregrep -M -o '^[^\t:]+(?=:([^\n]|\n\t)*status: active)') && for val in $activeInt; do echo $(ipconfig getifaddr $val); done
+```
+
 ## System
 
 Show all the startup applications that are hidden in "startup applications".
