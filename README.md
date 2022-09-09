@@ -76,6 +76,11 @@ Get IP addresses of all enabled network interfaces.
 activeInt=$(ifconfig | pcregrep -M -o '^[^\t:]+(?=:([^\n]|\n\t)*status: active)') && for val in $activeInt; do echo $(ipconfig getifaddr $val); done
 ```
 
+Ping google until network connectivity is established.
+```shell
+ping google.com || while [[ $? != 0 ]] ; do ping google.com; done
+```
+
 ## System
 
 Show all the startup applications that are hidden in "startup applications".
